@@ -41,23 +41,21 @@ public class MainActivity extends AppCompatActivity{
 
         AnhXa();
         initPreferences();
-        String savedDataemail = sharedPreferences.getString("EMAIL", "");
-        etEmail.setText(savedDataemail);
-        String savedDatapass = sharedPreferences.getString("PASS", "");
-        etEmail.setText(savedDatapass);
+        saveData();
         btnluu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v == btnluu){
+                if (v == btnluu && etPass.getText().toString().matches("^(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{7,}$")){
                     String dataEmail = etEmail.getText().toString();
                     editor.putString("EMAIL", dataEmail);
-                    String dataPass = etEmail.getText().toString();
+                    String dataPass = etPass.getText().toString();
                     editor.putString("PASS", dataPass);
                     editor.commit();
                     Intent intent = new Intent(getApplicationContext(), ManHinhLogout.class);
                     startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Đăng nhập thành công!",Toast.LENGTH_LONG).show();
                 } else{
-                    Toast.makeText(getApplicationContext(),"Bạn nhập không hợp lệ",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Bạn nhập không hợp lệ!",Toast.LENGTH_LONG).show();
                     etEmail.setText("");
                     etPass.setText("");
                     editor.clear();
@@ -67,11 +65,17 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    private void saveData() {
+        String savedDataemail = sharedPreferences.getString("EMAIL", "");
+        etEmail.setText(savedDataemail);
+        String savedDatapass = sharedPreferences.getString("PASS", "");
+        etEmail.setText(savedDatapass);
+    }
+
     private void AnhXa() {
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
         cbLuumatkhau = findViewById(R.id.checkbox);
-       // btnLogin =findViewById(R.id.btnLogin);
         btnluu = findViewById(R.id.btnluu);
     }
 
