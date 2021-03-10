@@ -6,8 +6,8 @@ import android.util.Patterns;
 import java.util.regex.Pattern;
 
 public class User {
-    private String email;
-    private String password;
+    public String email;
+    public String password;
 
     public User(String email, String password) {
         this.email = email;

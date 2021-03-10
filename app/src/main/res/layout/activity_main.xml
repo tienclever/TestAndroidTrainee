@@ -73,12 +73,18 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+<!--        <Button-->
+<!--            android:onClick="@{()-> loginViewmodel.onClickmodel()}"-->
+<!--            android:text="Login"-->
+<!--            android:id="@+id/btnLogin"-->
+<!--            android:layout_below="@+id/tvMessage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
         <Button
-            android:onClick="@{()-> loginViewmodel.onClickmodel()}"
-            android:text="Login"
-            android:id="@+id/btnLogin"
+            android:text="Dăng nhập"
+            android:id="@+id/btnluu"
             android:layout_below="@+id/tvMessage"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 </layout>

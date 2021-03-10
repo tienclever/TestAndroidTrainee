@@ -1,7 +1,9 @@
 package com.example.testandroidtrainee;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.text.DisplayContext;
+import android.preference.PreferenceManager;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -30,14 +32,5 @@ public class Model extends BaseObservable {
     public void setPassword(String password) {
         this.password = password;
         notifyPropertyChanged(BR.password);
-    }
-
-    public void onClickmodel(){
-        User user = new User(getEmail(),getPassword());
-        if(user.isValidEmail() && user.isValidPassWord()){
-            message.set("Đăng nhập thành công!");
-        }else {
-            message.set("Đăng nhập thất bại!");
-        }
     }
 }

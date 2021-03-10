@@ -25,29 +25,41 @@ public class MainActivity extends AppCompatActivity{
     SharedPreferences.Editor editor;
     EditText etEmail;
     EditText etPass;
+    Button btnluu;
     CheckBox cbLuumatkhau;
     Button btnLogin;
+    public User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AnhXa();
-        initPreferences();
+
         ActivityMainBinding activityMainBinding =  DataBindingUtil.setContentView(this, R.layout.activity_main);
         Model model = new Model();
         activityMainBinding.setLoginViewmodel(model);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+
+        AnhXa();
+        initPreferences();
+        String savedDataemail = sharedPreferences.getString("EMAIL", "");
+        etEmail.setText(savedDataemail);
+        String savedDatapass = sharedPreferences.getString("PASS", "");
+        etEmail.setText(savedDatapass);
+        btnluu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbLuumatkhau.isChecked()) {
-                    String data1 = etEmail.getText().toString();
-                    // "DATA" là key, data tham số thứ 2 là value.
-                    editor.putString("DATA", data1);
+                if (v == btnluu){
+                    String dataEmail = etEmail.getText().toString();
+                    editor.putString("EMAIL", dataEmail);
+                    String dataPass = etEmail.getText().toString();
+                    editor.putString("PASS", dataPass);
                     editor.commit();
-                } else {
-                    // Nếu click vào nút Clear, ta sẽ xoá dữ liệu đi.
+                    Intent intent = new Intent(getApplicationContext(), ManHinhLogout.class);
+                    startActivity(intent);
+                } else{
+                    Toast.makeText(getApplicationContext(),"Bạn nhập không hợp lệ",Toast.LENGTH_LONG).show();
                     etEmail.setText("");
+                    etPass.setText("");
                     editor.clear();
                     editor.commit();
                 }
@@ -59,18 +71,12 @@ public class MainActivity extends AppCompatActivity{
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
         cbLuumatkhau = findViewById(R.id.checkbox);
-        btnLogin =findViewById(R.id.btnLogin);
+       // btnLogin =findViewById(R.id.btnLogin);
+        btnluu = findViewById(R.id.btnluu);
     }
 
     private void initPreferences() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
-        editor.putString("email", "string value");
-        editor.putString("pass","string value");
-        editor.apply();
-        String savedData1 = sharedPreferences.getString("DATA", "");
-        etEmail.setText(savedData1);
-        String savedData2 = sharedPreferences.getString("DATA2", "");
-        etPass.setText(savedData2);
     }
 }
