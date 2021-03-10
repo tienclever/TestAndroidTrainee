@@ -38,26 +38,26 @@ public class MainActivity extends AppCompatActivity{
 
         AnhXa();
         initPreferences();
-        saveData();
+        data();
         btnluu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (v == btnluu && etPass.getText().toString().matches("^(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{7,}$")) {
-                    Intent intent = new Intent(getApplicationContext(), ManHinhLogout.class);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
                     if (cbLuumatkhau.isChecked()) {
                         String data = etEmail.getText().toString();
                         editor.putString("DATA", data);
                         String data1 = etPass.getText().toString();
-                        editor.putString("DATA1", data);
+                        editor.putString("DATA1", data1);
                         editor.commit();
-                    } else {
+                    }else {
                         etEmail.setText("");
                         etPass.setText("");
                         editor.clear();
                         editor.commit();
                     }
+                    Intent intent = new Intent(getApplicationContext(), ManHinhLogout.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(getApplicationContext(), "Bạn nhập không hợp lệ!", Toast.LENGTH_LONG).show();
                 }
@@ -65,10 +65,11 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    private void saveData() {
-        String savedData = sharedPreferences.getString("DATA", "");
-        etEmail.setText(savedData);
-        String savedData1 = sharedPreferences.getString("DATA1", "");
+    private void data() {
+            String savedData = sharedPreferences.getString("DATA", "");
+            etEmail.setText(savedData);
+            String savedData1 = sharedPreferences.getString("DATA1", "");
+            etPass.setText(savedData1);
     }
 
     private void AnhXa() {
