@@ -22,7 +22,7 @@
             android:textSize="30sp"
             android:gravity="center"
             android:id="@+id/LOGIN"
-            android:text="LOGIN"
+            android:text="ĐĂNG NHẬP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -84,7 +84,7 @@
             android:text="Dăng nhập"
             android:id="@+id/btnluu"
             android:layout_below="@+id/tvMessage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 </layout>

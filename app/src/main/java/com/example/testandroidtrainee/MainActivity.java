@@ -20,15 +20,12 @@ import com.example.testandroidtrainee.databinding.ActivityMainBinding;
 import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity{
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     EditText etEmail;
     EditText etPass;
     Button btnluu;
     CheckBox cbLuumatkhau;
-    Button btnLogin;
-    public User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,31 +42,33 @@ public class MainActivity extends AppCompatActivity{
         btnluu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v == btnluu && etPass.getText().toString().matches("^(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{7,}$")){
-                    String dataEmail = etEmail.getText().toString();
-                    editor.putString("EMAIL", dataEmail);
-                    String dataPass = etPass.getText().toString();
-                    editor.putString("PASS", dataPass);
-                    editor.commit();
+                if (v == btnluu && etPass.getText().toString().matches("^(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{7,}$")) {
                     Intent intent = new Intent(getApplicationContext(), ManHinhLogout.class);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(),"Đăng nhập thành công!",Toast.LENGTH_LONG).show();
-                } else{
-                    Toast.makeText(getApplicationContext(),"Bạn nhập không hợp lệ!",Toast.LENGTH_LONG).show();
-                    etEmail.setText("");
-                    etPass.setText("");
-                    editor.clear();
-                    editor.commit();
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
+                    if (cbLuumatkhau.isChecked()) {
+                        String data = etEmail.getText().toString();
+                        editor.putString("DATA", data);
+                        String data1 = etPass.getText().toString();
+                        editor.putString("DATA1", data);
+                        editor.commit();
+                    } else {
+                        etEmail.setText("");
+                        etPass.setText("");
+                        editor.clear();
+                        editor.commit();
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(), "Bạn nhập không hợp lệ!", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     private void saveData() {
-        String savedDataemail = sharedPreferences.getString("EMAIL", "");
-        etEmail.setText(savedDataemail);
-        String savedDatapass = sharedPreferences.getString("PASS", "");
-        etEmail.setText(savedDatapass);
+        String savedData = sharedPreferences.getString("DATA", "");
+        etEmail.setText(savedData);
+        String savedData1 = sharedPreferences.getString("DATA1", "");
     }
 
     private void AnhXa() {
@@ -83,4 +82,5 @@ public class MainActivity extends AppCompatActivity{
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
     }
+
 }
