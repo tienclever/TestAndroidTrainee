@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Đăng nhập thành công! abc", Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getApplicationContext(), "Bạn nhập không hợp lệ!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "eeeessssss", Toast.LENGTH_LONG).show();
                 }
             }
         });
