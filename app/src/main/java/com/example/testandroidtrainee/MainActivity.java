@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
                     }
                     Intent intent = new Intent(getApplicationContext(), ManHinhLogout.class);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công! abc", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công! abccmdddd", Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(getApplicationContext(), "eeeessssss", Toast.LENGTH_LONG).show();
                 }
